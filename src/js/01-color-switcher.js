@@ -20,10 +20,8 @@ function getRandomHexColor() {
   refs.body.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-refs.stopButton.addEventListener('click', onColorChangeStop)
-function onColorChangeStop() {
+refs.stopButton.addEventListener('click', onStopButtonClick)
+function onStopButtonClick() {
     refs.isActive = false;
     clearInterval(intervalId);
 }
-
-    
