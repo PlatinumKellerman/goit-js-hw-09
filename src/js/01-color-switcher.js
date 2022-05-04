@@ -10,7 +10,7 @@ function onColorChange() {
     if (refs.isActive === true) {
         return
     } else {
-        intervalId = setInterval(getRandomHexColor, 1000);
+        intervalID = setInterval(getRandomHexColor, 1000);
         refs.isActive = true;
     }
     
@@ -23,5 +23,5 @@ function getRandomHexColor() {
 refs.stopButton.addEventListener('click', onStopButtonClick)
 function onStopButtonClick() {
     refs.isActive = false;
-    clearInterval(intervalId);
+    clearInterval(intervalID);
 }
