@@ -34,10 +34,9 @@ const options = {
                 closeButton: true,
             });
             refs.startButton.disabled = true;
-            refs.startButton.classList.toggle('isActive');
         } else {
             refs.startButton.disabled = false;
-            refs.startButton.classList.toggle('isActive');
+            refs.startButton.classList.add('isActive');
         }
     },
 };
