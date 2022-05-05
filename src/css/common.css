@@ -16,3 +16,73 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.date-input {
+  text-align: center;
+  border: 3px solid #cecbcb;
+  border-radius: 5px;
+  font-size: 22px;
+  margin-right: 5px;
+  transition-property: color, background-color, border-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.date-input:focus,
+.date-input:hover {
+  border: 3px solid #111111;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-color: tomato;
+  outline: 0;
+  color: #111111;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.input-button {
+  font-size: 22px;
+  border: 3px solid #cecbcb;
+  border-radius: 5px;
+  transition-property: color, background-color, border-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.isActive:hover,
+.isActive:focus {
+  cursor: pointer;
+  border: 3px solid #111111;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-color: tomato;
+  outline: 0;
+  color: #111111;
+  
+}
+
+.timer {
+  justify-content: center;
+  display: flex;
+  width: auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 32px;
+}
+.field:last-child {
+  padding-right: 0px;
+}
+
+.value {
+  font-size: 52px;
+}
+
+.label {
+  text-transform: uppercase;
+  font-weight: bold;
+}
