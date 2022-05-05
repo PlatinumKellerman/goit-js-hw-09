@@ -49,9 +49,12 @@ function startingTimer() {
     const intervalID = setInterval(() => {
         const deltaTime = refs.selectedDate - Date.now();
         const timeComponents = convertMs(deltaTime);
-        timeChange(timeComponents)
+        timeChange(timeComponents);
+        refs.startButton.disabled = true;
+        refs.startButton.classList.remove('isActive');
         if (deltaTime < 1000) {
             clearInterval(intervalID);
+            
     }
     }, 1000);
     
