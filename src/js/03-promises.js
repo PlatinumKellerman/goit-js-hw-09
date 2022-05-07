@@ -21,6 +21,7 @@ function onFormSubmit(e) {
 function newPromiseLoop({ amountInputValue, delayStepValue, firstDelayValue }) {
   let newDelay = firstDelayValue;
   for (let i = 1; i <= amountInputValue; i += 1) {
+    newDelay += delayStepValue;
     createPromise(i, newDelay)
       .then(({ position, firstDelayValue }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${firstDelayValue}ms`);
@@ -28,13 +29,11 @@ function newPromiseLoop({ amountInputValue, delayStepValue, firstDelayValue }) {
       .catch(({ position, firstDelayValue }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${firstDelayValue}ms`);
       });
-    newDelay += delayStepValue;
   }
 }
 
 function createPromise(position, firstDelayValue) {
   const shouldResolve = Math.random() > 0.3;
-
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (shouldResolve) {
