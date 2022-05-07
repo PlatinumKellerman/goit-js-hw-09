@@ -1,31 +1,48 @@
-function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-    // Fulfill
-  } else {
-    // Reject
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+const refs = {
+  form: document.querySelector('.form'),
+  firstDelayInput: document.querySelector('input[name="delay"]'),
+  delayStepInput: document.querySelector('input[name="step"]'),
+  amountInput: document.querySelector('input[name="amount"]'),
+  submitButton: document.querySelector('button[type="submit"]'),
+}
+
+refs.form.addEventListener('submit', onFormSubmit)
+function onFormSubmit(e) {
+  e.preventDefault();
+  const inputValues = {
+    firstDelayValue: Number(refs.firstDelayInput.value),
+    delayStepValue: Number(refs.delayStepInput.value),
+    amountInputValue: Number(refs.amountInput.value)
+  }
+  newPromiseLoop(inputValues)
+}
+
+function newPromiseLoop({ amountInputValue, delayStepValue, firstDelayValue }) {
+  let newDelay = firstDelayValue;
+  for (let i = 1; i <= amountInputValue; i += 1) {
+    createPromise(i, newDelay)
+      .then(({ position, firstDelayValue }) => {
+        Notify.success(`✅ Fulfilled promise ${position} in ${firstDelayValue}ms`);
+      })
+      .catch(({ position, firstDelayValue }) => {
+        Notify.failure(`❌ Rejected promise ${position} in ${firstDelayValue}ms`);
+      });
+    newDelay += delayStepValue;
   }
 }
 
+function createPromise(position, firstDelayValue) {
+  const shouldResolve = Math.random() > 0.3;
 
-console.log('B');
-
-
-
-
-console.log('C');
-
-const promise = new Promise((resolve, reject) => {
-let a = 0;
-
-for (let i = 0; i < 1000000000; i += 1) {
-  a += i;
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({ position: position, firstDelayValue: firstDelayValue });
+      } else {
+        reject({ position: position, firstDelayValue: firstDelayValue });
+      }
+    }, firstDelayValue);
+  });
 }
-  resolve(a);
-})
-
-promise.then((result) => {
-  return console.log('result', result);
-}).then((qwe) => {
-return console.log(qwe);
-})
