@@ -5,7 +5,6 @@ const refs = {
   firstDelayInput: document.querySelector('input[name="delay"]'),
   delayStepInput: document.querySelector('input[name="step"]'),
   amountInput: document.querySelector('input[name="amount"]'),
-  submitButton: document.querySelector('button[type="submit"]'),
 }
 
 refs.form.addEventListener('submit', onFormSubmit)
@@ -16,7 +15,7 @@ function onFormSubmit(e) {
     delayStepValue: Number(refs.delayStepInput.value),
     amountInputValue: Number(refs.amountInput.value)
   }
-  newPromiseLoop(inputValues)
+  newPromiseLoop(inputValues);
 }
 
 function newPromiseLoop({ amountInputValue, delayStepValue, firstDelayValue }) {
